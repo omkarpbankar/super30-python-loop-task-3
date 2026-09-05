@@ -1,0 +1,854 @@
+import json
+import os
+
+notebook = {
+    "cells": [
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "# 🐍 Super30 Python Loops - Assignment Task 3\n",
+                "\n",
+                "**Objective:** Apply loops to realistic data-processing and problem-solving scenarios without relying on high-level built-in shortcut functions (e.g., `sum()`, `max()`, `min()`, `sort()`, `Counter`).\n",
+                "\n",
+                "---\n",
+                "\n",
+                "## 📋 Table of Contents\n",
+                "1. [Question 1: Total Transaction Value (without sum)](#q1)\n",
+                "2. [Question 2: Highest & Lowest Transaction (without max/min)](#q2)\n",
+                "3. [Question 3: Average Temperature](#q3)\n",
+                "4. [Question 4: Student Marks Categorization](#q4)\n",
+                "5. [Question 5: Login System (Max 3 Attempts)](#q5)\n",
+                "6. [Question 6: Filter Products Costing > ₹2,000](#q6)\n",
+                "7. [Question 7: Accept 10 Numbers from User](#q7)\n",
+                "8. [Question 8: Character Frequency Counter (without Counter)](#q8)\n",
+                "9. [Question 9: Second-Largest Number (without sort)](#q9)\n",
+                "10. [Question 10: Palindrome Checker using Loops](#q10)\n",
+                "11. [Question 11: Number Pattern Generator](#q11)\n",
+                "12. [Question 12: ATM Simulation System](#q12)\n",
+                "\n",
+                "---"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "<a id='q1'></a>\n",
+                "## 1. Calculate Total Transaction Value\n",
+                "\n",
+                "**Problem Statement:**\n",
+                "Given `transactions = [1200, 450, 800, 1500, 2300, 700, 100]`, calculate the total transaction value **without using `sum()`**."
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": 1,
+            "metadata": {},
+            "outputs": [
+                {
+                    "name": "stdout",
+                    "output_type": "stream",
+                    "text": [
+                        "Transactions List: [1200, 450, 800, 1500, 2300, 700, 100]\n",
+                        "Total Transaction Value: ₹7050\n"
+                    ]
+                }
+            ],
+            "source": [
+                "# Given list of transactions\n",
+                "transactions = [1200, 450, 800, 1500, 2300, 700, 100]\n",
+                "\n",
+                "# Initialize accumulator variable\n",
+                "total_value = 0\n",
+                "\n",
+                "# Iterate through each transaction and compute running sum\n",
+                "for amount in transactions:\n",
+                "    total_value += amount\n",
+                "\n",
+                "print(f\"Transactions List: {transactions}\")\n",
+                "print(f\"Total Transaction Value: ₹{total_value}\")"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "<a id='q2'></a>\n",
+                "## 2. Highest and Lowest Transaction\n",
+                "\n",
+                "**Problem Statement:**\n",
+                "From the same list `transactions = [1200, 450, 800, 1500, 2300, 700, 100]`, find the highest and lowest transaction **without using `max()` and `min()`**."
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": 2,
+            "metadata": {},
+            "outputs": [
+                {
+                    "name": "stdout",
+                    "output_type": "stream",
+                    "text": [
+                        "Transactions: [1200, 450, 800, 1500, 2300, 700, 100]\n",
+                        "Highest Transaction: ₹2300\n",
+                        "Lowest Transaction : ₹100\n"
+                    ]
+                }
+            ],
+            "source": [
+                "transactions = [1200, 450, 800, 1500, 2300, 700, 100]\n",
+                "\n",
+                "# Initialize highest and lowest with the first element\n",
+                "if transactions:\n",
+                "    highest = transactions[0]\n",
+                "    lowest = transactions[0]\n",
+                "\n",
+                "    # Loop through the list to compare and update values\n",
+                "    for amount in transactions:\n",
+                "        if amount > highest:\n",
+                "            highest = amount\n",
+                "        if amount < lowest:\n",
+                "            lowest = amount\n",
+                "\n",
+                "    print(f\"Transactions: {transactions}\")\n",
+                "    print(f\"Highest Transaction: ₹{highest}\")\n",
+                "    print(f\"Lowest Transaction : ₹{lowest}\")\n",
+                "else:\n",
+                "    print(\"Transaction list is empty.\")"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "<a id='q3'></a>\n",
+                "## 3. Average Temperature\n",
+                "\n",
+                "**Problem Statement:**\n",
+                "Given `temperatures = [32, 35, 28, 40, 38, 31, 42]`, find the average temperature."
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": 3,
+            "metadata": {},
+            "outputs": [
+                {
+                    "name": "stdout",
+                    "output_type": "stream",
+                    "text": [
+                        "Recorded Temperatures: [32, 35, 28, 40, 38, 31, 42]\n",
+                        "Sum of Temperatures: 246°C\n",
+                        "Total Readings: 7\n",
+                        "Average Temperature: 35.14°C\n"
+                    ]
+                }
+            ],
+            "source": [
+                "temperatures = [32, 35, 28, 40, 38, 31, 42]\n",
+                "\n",
+                "total_temp = 0\n",
+                "count = 0\n",
+                "\n",
+                "# Calculate sum and count using a loop\n",
+                "for temp in temperatures:\n",
+                "    total_temp += temp\n",
+                "    count += 1\n",
+                "\n",
+                "avg_temp = total_temp / count if count > 0 else 0\n",
+                "\n",
+                "print(f\"Recorded Temperatures: {temperatures}\")\n",
+                "print(f\"Sum of Temperatures: {total_temp}°C\")\n",
+                "print(f\"Total Readings: {count}\")\n",
+                "print(f\"Average Temperature: {avg_temp:.2f}°C\")"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "<a id='q4'></a>\n",
+                "## 4. Student Marks Categorization\n",
+                "\n",
+                "**Problem Statement:**\n",
+                "Given student marks `marks = [78, 92, 45, 67, 88, 53, 99]`,\n",
+                "count how many students scored:\n",
+                "- **90+**\n",
+                "- **75–89**\n",
+                "- **50–74**\n",
+                "- **below 50**"
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": 4,
+            "metadata": {},
+            "outputs": [
+                {
+                    "name": "stdout",
+                    "output_type": "stream",
+                    "text": [
+                        "Student Marks: [78, 92, 45, 67, 88, 53, 99]\n",
+                        "=====================================\n",
+                        "        STUDENT SCORE REPORT         \n",
+                        "=====================================\n",
+                        "• 90+      : 2 student(s)\n",
+                        "• 75 - 89  : 2 student(s)\n",
+                        "• 50 - 74  : 2 student(s)\n",
+                        "• Below 50 : 1 student(s)\n",
+                        "=====================================\n"
+                    ]
+                }
+            ],
+            "source": [
+                "marks = [78, 92, 45, 67, 88, 53, 99]\n",
+                "\n",
+                "# Initialize counters for each category\n",
+                "count_90_plus = 0\n",
+                "count_75_89 = 0\n",
+                "count_50_74 = 0\n",
+                "count_below_50 = 0\n",
+                "\n",
+                "# Categorize marks using conditionals inside loop\n",
+                "for score in marks:\n",
+                "    if score >= 90:\n",
+                "        count_90_plus += 1\n",
+                "    elif score >= 75:     # 75 <= score <= 89\n",
+                "        count_75_89 += 1\n",
+                "    elif score >= 50:     # 50 <= score <= 74\n",
+                "        count_50_74 += 1\n",
+                "    else:                 # score < 50\n",
+                "        count_below_50 += 1\n",
+                "\n",
+                "print(f\"Student Marks: {marks}\")\n",
+                "print(\"=\" * 37)\n",
+                "print(\"        STUDENT SCORE REPORT         \")\n",
+                "print(\"=\" * 37)\n",
+                "print(f\"• 90+      : {count_90_plus} student(s)\")\n",
+                "print(f\"• 75 - 89  : {count_75_89} student(s)\")\n",
+                "print(f\"• 50 - 74  : {count_50_74} student(s)\")\n",
+                "print(f\"• Below 50 : {count_below_50} student(s)\")\n",
+                "print(\"=\" * 37)"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "<a id='q5'></a>\n",
+                "## 5. Simple Login System (Maximum 3 Attempts)\n",
+                "\n",
+                "**Problem Statement:**\n",
+                "Create a simple login system with a maximum of 3 password attempts using a loop."
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": 5,
+            "metadata": {},
+            "outputs": [
+                {
+                    "name": "stdout",
+                    "output_type": "stream",
+                    "text": [
+                        "--- Login Demonstration ---\n",
+                        "Attempt 1/3: Entered 'wrong123'\n",
+                        "Incorrect password! 2 attempt(s) left.\n",
+                        "Attempt 2/3: Entered 'testpass'\n",
+                        "Incorrect password! 1 attempt(s) left.\n",
+                        "Attempt 3/3: Entered 'admin@2026'\n",
+                        "Access Granted! Welcome to the system.\n"
+                    ]
+                }
+            ],
+            "source": [
+                "# Simulated function for demonstration, and interactive version below\n",
+                "def login_system_demo(simulated_inputs=None):\n",
+                "    correct_password = \"admin@2026\"\n",
+                "    max_attempts = 3\n",
+                "    attempts = 0\n",
+                "    \n",
+                "    while attempts < max_attempts:\n",
+                "        attempts += 1\n",
+                "        remaining = max_attempts - attempts\n",
+                "        \n",
+                "        if simulated_inputs is not None:\n",
+                "            pwd = simulated_inputs[attempts - 1]\n",
+                "            print(f\"Attempt {attempts}/{max_attempts}: Entered '{pwd}'\")\n",
+                "        else:\n",
+                "            pwd = input(f\"Enter password ({remaining + 1} attempt(s) remaining): \")\n",
+                "            \n",
+                "        if pwd == correct_password:\n",
+                "            print(\"Access Granted! Welcome to the system.\")\n",
+                "            break\n",
+                "        else:\n",
+                "            if remaining > 0:\n",
+                "                print(f\"Incorrect password! {remaining} attempt(s) left.\")\n",
+                "            else:\n",
+                "                print(\"Account Locked! Maximum attempts exceeded.\")\n",
+                "\n",
+                "print(\"--- Login Demonstration ---\")\n",
+                "login_system_demo(simulated_inputs=[\"wrong123\", \"testpass\", \"admin@2026\"])\n",
+                "\n",
+                "# To try interactively, uncomment below:\n",
+                "# login_system_demo()"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "<a id='q6'></a>\n",
+                "## 6. Filter Products Costing More Than ₹2,000\n",
+                "\n",
+                "**Problem Statement:**\n",
+                "Given dictionary:\n",
+                "```python\n",
+                "products = {\n",
+                "    \"Laptop\": 55000,\n",
+                "    \"Phone\": 30000,\n",
+                "    \"Headphones\": 2000,\n",
+                "    \"Mouse\": 700,\n",
+                "    \"Keyboard\": 1500\n",
+                "}\n",
+                "```\n",
+                "Print only products costing more than ₹2,000."
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": 6,
+            "metadata": {},
+            "outputs": [
+                {
+                    "name": "stdout",
+                    "output_type": "stream",
+                    "text": [
+                        "Products costing more than ₹2,000:\n",
+                        "----------------------------------------\n",
+                        "• Laptop               : ₹55,000\n",
+                        "• Phone                : ₹30,000\n",
+                        "----------------------------------------\n"
+                    ]
+                }
+            ],
+            "source": [
+                "products = {\n",
+                "    \"Laptop\": 55000,\n",
+                "    \"Phone\": 30000,\n",
+                "    \"Headphones\": 2000,\n",
+                "    \"Mouse\": 700,\n",
+                "    \"Keyboard\": 1500\n",
+                "}\n",
+                "\n",
+                "threshold = 2000\n",
+                "\n",
+                "print(f\"Products costing more than ₹{threshold:,}:\")\n",
+                "print(\"-\" * 40)\n",
+                "\n",
+                "# Iterate through key-value pairs\n",
+                "for item, price in products.items():\n",
+                "    if price > threshold:\n",
+                "        print(f\"• {item:<20} : ₹{price:,}\")\n",
+                "\n",
+                "print(\"-\" * 40)"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "<a id='q7'></a>\n",
+                "## 7. Accept 10 Numbers from the User into a List\n",
+                "\n",
+                "**Problem Statement:**\n",
+                "Accept 10 numbers from the user and store them in a list using a loop."
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": 7,
+            "metadata": {},
+            "outputs": [
+                {
+                    "name": "stdout",
+                    "output_type": "stream",
+                    "text": [
+                        "--- Demonstration with 10 sample inputs ---\n",
+                        "Input 1/10: 12\n",
+                        "Input 2/10: 45\n",
+                        "Input 3/10: 78\n",
+                        "Input 4/10: 23\n",
+                        "Input 5/10: 56\n",
+                        "Input 6/10: 89\n",
+                        "Input 7/10: 90\n",
+                        "Input 8/10: 11\n",
+                        "Input 9/10: 34\n",
+                        "Input 10/10: 67\n",
+                        "\n",
+                        "Collected Numbers List: [12, 45, 78, 23, 56, 89, 90, 11, 34, 67]\n",
+                        "Total Elements Stored : 10\n"
+                    ]
+                }
+            ],
+            "source": [
+                "def collect_ten_numbers(simulated_data=None):\n",
+                "    numbers_list = []\n",
+                "    total_count = 10\n",
+                "    \n",
+                "    for i in range(1, total_count + 1):\n",
+                "        if simulated_data is not None:\n",
+                "            val = simulated_data[i - 1]\n",
+                "            print(f\"Input {i}/{total_count}: {val}\")\n",
+                "            numbers_list.append(val)\n",
+                "        else:\n",
+                "            while True:\n",
+                "                try:\n",
+                "                    val = float(input(f\"Enter number {i}/{total_count}: \"))\n",
+                "                    numbers_list.append(val)\n",
+                "                    break\n",
+                "                except ValueError:\n",
+                "                    print(\"Invalid input! Please enter a valid number.\")\n",
+                "                    \n",
+                "    return numbers_list\n",
+                "\n",
+                "print(\"--- Demonstration with 10 sample inputs ---\")\n",
+                "demo_inputs = [12, 45, 78, 23, 56, 89, 90, 11, 34, 67]\n",
+                "result = collect_ten_numbers(simulated_data=demo_inputs)\n",
+                "\n",
+                "print(f\"\\nCollected Numbers List: {result}\")\n",
+                "print(f\"Total Elements Stored : {len(result)}\")\n",
+                "\n",
+                "# To try interactively, uncomment below:\n",
+                "# interactive_list = collect_ten_numbers()\n",
+                "# print(\"User List:\", interactive_list)"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "<a id='q8'></a>\n",
+                "## 8. Character Frequency Counter (without Counter)\n",
+                "\n",
+                "**Problem Statement:**\n",
+                "Count the frequency of every character in a string **without using `collections.Counter`**.\n",
+                "\n",
+                "**Example:**\n",
+                "```\n",
+                "banana\n",
+                "b -> 1\n",
+                "a -> 3\n",
+                "n -> 2\n",
+                "```"
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": 8,
+            "metadata": {},
+            "outputs": [
+                {
+                    "name": "stdout",
+                    "output_type": "stream",
+                    "text": [
+                        "Input string: 'banana'\n",
+                        "Character frequencies:\n",
+                        "b -> 1\n",
+                        "a -> 3\n",
+                        "n -> 2\n",
+                        "\n",
+                        "Input string: 'programming'\n",
+                        "Character frequencies:\n",
+                        "p -> 1\n",
+                        "r -> 2\n",
+                        "o -> 1\n",
+                        "g -> 2\n",
+                        "a -> 1\n",
+                        "m -> 2\n",
+                        "i -> 1\n",
+                        "n -> 1\n"
+                    ]
+                }
+            ],
+            "source": [
+                "def count_character_frequency(text):\n",
+                "    frequency_dict = {}\n",
+                "    \n",
+                "    # Iterate through characters and count occurrences\n",
+                "    for char in text:\n",
+                "        if char in frequency_dict:\n",
+                "            frequency_dict[char] += 1\n",
+                "        else:\n",
+                "            frequency_dict[char] = 1\n",
+                "            \n",
+                "    return frequency_dict\n",
+                "\n",
+                "# Test with 'banana'\n",
+                "word1 = \"banana\"\n",
+                "freq1 = count_character_frequency(word1)\n",
+                "print(f\"Input string: '{word1}'\")\n",
+                "print(\"Character frequencies:\")\n",
+                "for char, count in freq1.items():\n",
+                "    print(f\"{char} -> {count}\")\n",
+                "\n",
+                "print()\n",
+                "\n",
+                "# Additional test with 'programming'\n",
+                "word2 = \"programming\"\n",
+                "freq2 = count_character_frequency(word2)\n",
+                "print(f\"Input string: '{word2}'\")\n",
+                "print(\"Character frequencies:\")\n",
+                "for char, count in freq2.items():\n",
+                "    print(f\"{char} -> {count}\")"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "<a id='q9'></a>\n",
+                "## 9. Find Second-Largest Number (without sort)\n",
+                "\n",
+                "**Problem Statement:**\n",
+                "Find the second-largest number in a list **without using `sort()`**."
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": 9,
+            "metadata": {},
+            "outputs": [
+                {
+                    "name": "stdout",
+                    "output_type": "stream",
+                    "text": [
+                        "Input List: [45, 12, 85, 32, 89, 39, 69, 89, 23]\n",
+                        "Largest Number       : 89\n",
+                        "Second-Largest Number: 85\n",
+                        "\n",
+                        "Testing another list: [-10, -50, -5, -20, -5, -12]\n",
+                        "Largest Number       : -5\n",
+                        "Second-Largest Number: -10\n"
+                    ]
+                }
+            ],
+            "source": [
+                "def find_second_largest(numbers):\n",
+                "    if len(numbers) < 2:\n",
+                "        return None, None\n",
+                "    \n",
+                "    largest = float('-inf')\n",
+                "    second_largest = float('-inf')\n",
+                "    \n",
+                "    for num in numbers:\n",
+                "        if num > largest:\n",
+                "            second_largest = largest\n",
+                "            largest = num\n",
+                "        elif num > second_largest and num < largest:\n",
+                "            # Update second_largest only if it's strictly less than largest (handles duplicates)\n",
+                "            second_largest = num\n",
+                "            \n",
+                "    return largest, second_largest\n",
+                "\n",
+                "# Test Case 1: Positive list with duplicate maximums\n",
+                "nums1 = [45, 12, 85, 32, 89, 39, 69, 89, 23]\n",
+                "max1, sec1 = find_second_largest(nums1)\n",
+                "print(f\"Input List: {nums1}\")\n",
+                "print(f\"Largest Number       : {max1}\")\n",
+                "print(f\"Second-Largest Number: {sec1}\")\n",
+                "\n",
+                "print()\n",
+                "\n",
+                "# Test Case 2: Negative numbers list\n",
+                "nums2 = [-10, -50, -5, -20, -5, -12]\n",
+                "max2, sec2 = find_second_largest(nums2)\n",
+                "print(f\"Testing another list: {nums2}\")\n",
+                "print(f\"Largest Number       : {max2}\")\n",
+                "print(f\"Second-Largest Number: {sec2}\")"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "<a id='q10'></a>\n",
+                "## 10. Check Palindrome Using Loops\n",
+                "\n",
+                "**Problem Statement:**\n",
+                "Check whether a string is a palindrome using loops."
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": 10,
+            "metadata": {},
+            "outputs": [
+                {
+                    "name": "stdout",
+                    "output_type": "stream",
+                    "text": [
+                        "==================================================\n",
+                        "               PALINDROME TEST RESULTS            \n",
+                        "==================================================\n",
+                        "• 'racecar'             ->  IS a Palindrome\n",
+                        "• 'madam'               ->  IS a Palindrome\n",
+                        "• 'banana'              ->  NOT a Palindrome\n",
+                        "• 'radar'               ->  IS a Palindrome\n",
+                        "• 'hello'               ->  NOT a Palindrome\n",
+                        "• 'level'               ->  IS a Palindrome\n",
+                        "• '12321'               ->  IS a Palindrome\n",
+                        "• 'Python'              ->  NOT a Palindrome\n",
+                        "==================================================\n"
+                    ]
+                }
+            ],
+            "source": [
+                "def is_palindrome_loop(text):\n",
+                "    # Two-pointer loop comparison\n",
+                "    cleaned = str(text).lower().strip()\n",
+                "    n = len(cleaned)\n",
+                "    \n",
+                "    for i in range(n // 2):\n",
+                "        if cleaned[i] != cleaned[n - 1 - i]:\n",
+                "            return False\n",
+                "    return True\n",
+                "\n",
+                "# Test cases\n",
+                "test_words = [\"racecar\", \"madam\", \"banana\", \"radar\", \"hello\", \"level\", \"12321\", \"Python\"]\n",
+                "\n",
+                "print(\"=\" * 50)\n",
+                "print(\"               PALINDROME TEST RESULTS            \")\n",
+                "print(\"=\" * 50)\n",
+                "for word in test_words:\n",
+                "    status = \" IS a Palindrome\" if is_palindrome_loop(word) else \"NOT a Palindrome\"\n",
+                "    print(f\"• {repr(word):<20} ->  {status}\")\n",
+                "print(\"=\" * 50)"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "<a id='q11'></a>\n",
+                "## 11. Number Pattern Generator\n",
+                "\n",
+                "**Problem Statement:**\n",
+                "Create this number pattern:\n",
+                "```\n",
+                "1\n",
+                "12\n",
+                "123\n",
+                "1234\n",
+                "12345\n",
+                "```"
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": 11,
+            "metadata": {},
+            "outputs": [
+                {
+                    "name": "stdout",
+                    "output_type": "stream",
+                    "text": [
+                        "Generated Number Pattern:\n",
+                        "1\n",
+                        "12\n",
+                        "123\n",
+                        "1234\n",
+                        "12345\n"
+                    ]
+                }
+            ],
+            "source": [
+                "rows = 5\n",
+                "print(\"Generated Number Pattern:\")\n",
+                "\n",
+                "# Outer loop controls row count (1 to 5)\n",
+                "for i in range(1, rows + 1):\n",
+                "    # Inner loop prints numbers from 1 up to current row number\n",
+                "    for j in range(1, i + 1):\n",
+                "        print(j, end=\"\")\n",
+                "    print()  # Move to next line after completing a row"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "<a id='q12'></a>\n",
+                "## 12. Basic ATM Simulation\n",
+                "\n",
+                "**Problem Statement:**\n",
+                "Create a basic ATM simulation where a user can repeatedly:\n",
+                "- **Check balance**\n",
+                "- **Deposit money**\n",
+                "- **Withdraw money**\n",
+                "- **Exit**"
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": 12,
+            "metadata": {},
+            "outputs": [
+                {
+                    "name": "stdout",
+                    "output_type": "stream",
+                    "text": [
+                        "========================================\n",
+                        "       WELCOME TO PYTHON BANK ATM       \n",
+                        "========================================\n",
+                        "\n",
+                        "[Simulation Step]: Selected Option 1 (Check Balance)\n",
+                        "-> Current Balance: ₹10,000.00\n",
+                        "\n",
+                        "[Simulation Step]: Selected Option 2 (Deposit ₹2,500.00)\n",
+                        "-> Successfully deposited ₹2,500.00.\n",
+                        "-> Updated Balance: ₹12,500.00\n",
+                        "\n",
+                        "[Simulation Step]: Selected Option 3 (Withdraw ₹4,000.00)\n",
+                        "-> Successfully withdrew ₹4,000.00.\n",
+                        "-> Updated Balance: ₹8,500.00\n",
+                        "\n",
+                        "[Simulation Step]: Selected Option 3 (Attempt Overdraft ₹15,000.00)\n",
+                        "-> Error: Insufficient funds! Available balance: ₹8,500.00\n",
+                        "\n",
+                        "[Simulation Step]: Selected Option 4 (Exit)\n",
+                        "-> Thank you for banking with us! Have a great day.\n"
+                    ]
+                }
+            ],
+            "source": [
+                "def run_atm(simulated_actions=None):\n",
+                "    balance = 10000.00\n",
+                "    print(\"=\" * 40)\n",
+                "    print(\"       WELCOME TO PYTHON BANK ATM       \")\n",
+                "    print(\"=\" * 40)\n",
+                "    \n",
+                "    # If simulated actions are passed, run automated demo\n",
+                "    if simulated_actions is not None:\n",
+                "        for action in simulated_actions:\n",
+                "            op = action.get(\"choice\")\n",
+                "            if op == \"1\":\n",
+                "                print(\"\\n[Simulation Step]: Selected Option 1 (Check Balance)\")\n",
+                "                print(f\"-> Current Balance: ₹{balance:,.2f}\")\n",
+                "            elif op == \"2\":\n",
+                "                amt = action.get(\"amount\", 0)\n",
+                "                print(f\"\\n[Simulation Step]: Selected Option 2 (Deposit ₹{amt:,.2f})\")\n",
+                "                if amt > 0:\n",
+                "                    balance += amt\n",
+                "                    print(f\"-> Successfully deposited ₹{amt:,.2f}.\")\n",
+                "                    print(f\"-> Updated Balance: ₹{balance:,.2f}\")\n",
+                "                else:\n",
+                "                    print(\"-> Error: Deposit amount must be positive.\")\n",
+                "            elif op == \"3\":\n",
+                "                amt = action.get(\"amount\", 0)\n",
+                "                label = action.get(\"note\", f\"Withdraw ₹{amt:,.2f}\")\n",
+                "                print(f\"\\n[Simulation Step]: Selected Option 3 ({label})\")\n",
+                "                if amt <= 0:\n",
+                "                    print(\"-> Error: Withdrawal amount must be positive.\")\n",
+                "                elif amt > balance:\n",
+                "                    print(f\"-> Error: Insufficient funds! Available balance: ₹{balance:,.2f}\")\n",
+                "                else:\n",
+                "                    balance -= amt\n",
+                "                    print(f\"-> Successfully withdrew ₹{amt:,.2f}.\")\n",
+                "                    print(f\"-> Updated Balance: ₹{balance:,.2f}\")\n",
+                "            elif op == \"4\":\n",
+                "                print(\"\\n[Simulation Step]: Selected Option 4 (Exit)\")\n",
+                "                print(\"-> Thank you for banking with us! Have a great day.\")\n",
+                "                break\n",
+                "        return\n",
+                "\n",
+                "    # Interactive loop\n",
+                "    while True:\n",
+                "        print(\"\\n--- ATM Menu ---\")\n",
+                "        print(\"1. Check Balance\")\n",
+                "        print(\"2. Deposit Money\")\n",
+                "        print(\"3. Withdraw Money\")\n",
+                "        print(\"4. Exit\")\n",
+                "        \n",
+                "        choice = input(\"Enter your choice (1-4): \").strip()\n",
+                "        \n",
+                "        if choice == '1':\n",
+                "            print(f\"\\n[Balance]: Your current balance is ₹{balance:,.2f}\")\n",
+                "            \n",
+                "        elif choice == '2':\n",
+                "            try:\n",
+                "                amount = float(input(\"Enter deposit amount: ₹\"))\n",
+                "                if amount > 0:\n",
+                "                    balance += amount\n",
+                "                    print(f\"Successfully deposited ₹{amount:,.2f}.\")\n",
+                "                    print(f\"Updated Balance: ₹{balance:,.2f}\")\n",
+                "                else:\n",
+                "                    print(\"Error: Deposit amount must be greater than 0.\")\n",
+                "            except ValueError:\n",
+                "                print(\"Error: Invalid amount entered.\")\n",
+                "                \n",
+                "        elif choice == '3':\n",
+                "            try:\n",
+                "                amount = float(input(\"Enter withdrawal amount: ₹\"))\n",
+                "                if amount <= 0:\n",
+                "                    print(\"Error: Withdrawal amount must be greater than 0.\")\n",
+                "                elif amount > balance:\n",
+                "                    print(f\"Error: Insufficient funds! Current balance is ₹{balance:,.2f}\")\n",
+                "                else:\n",
+                "                    balance -= amount\n",
+                "                    print(f\"Successfully withdrew ₹{amount:,.2f}.\")\n",
+                "                    print(f\"Updated Balance: ₹{balance:,.2f}\")\n",
+                "            except ValueError:\n",
+                "                print(\"Error: Invalid amount entered.\")\n",
+                "                \n",
+                "        elif choice == '4':\n",
+                "            print(\"\\nThank you for banking with us. Have a wonderful day!\")\n",
+                "            break\n",
+                "        else:\n",
+                "            print(\"Invalid choice! Please select an option between 1 and 4.\")\n",
+                "\n",
+                "# Run simulation demo\n",
+                "demo_workflow = [\n",
+                "    {\"choice\": \"1\"},\n",
+                "    {\"choice\": \"2\", \"amount\": 2500.00},\n",
+                "    {\"choice\": \"3\", \"amount\": 4000.00},\n",
+                "    {\"choice\": \"3\", \"amount\": 15000.00, \"note\": \"Attempt Overdraft ₹15,000.00\"},\n",
+                "    {\"choice\": \"4\"}\n",
+                "]\n",
+                "run_atm(simulated_actions=demo_workflow)\n",
+                "\n",
+                "# To launch the interactive ATM prompt, uncomment:\n",
+                "# run_atm()"
+            ]
+        }
+    ],
+    "metadata": {
+        "kernelspec": {
+            "display_name": "Python 3",
+            "language": "python",
+            "name": "python3"
+        },
+        "language_info": {
+            "codemirror_mode": {
+                "name": "ipython",
+                "version": 3
+            },
+            "file_extension": ".py",
+            "mimetype": "text/x-python",
+            "name": "python",
+            "nbformat": 4,
+            "nbformat_minor": 5,
+            "pygments_lexer": "ipython3",
+            "version": "3.12.10"
+        }
+    },
+    "nbformat": 4,
+    "nbformat_minor": 5
+}
+
+output_path = r"d:\euron\assignments\super30-python-loop-task-3\super30_python_loop_task_3.ipynb"
+with open(output_path, "w", encoding="utf-8") as f:
+    json.dump(notebook, f, indent=2)
+
+print("Notebook created successfully at:", output_path)
